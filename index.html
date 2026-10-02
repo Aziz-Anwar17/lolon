@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>LOLON BUAH</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b1220;color:#e7edf6;font-family:system-ui,sans-serif;text-align:center;padding:24px}
+.logo{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,#059669,#84cc16);margin:0 auto 18px}
+p{color:#8b9ab2}a{color:#34d399}</style></head>
+<body><div><div class="logo"></div><h1>LOLON BUAH</h1><p id="s">Menghubungkan ke server…</p></div>
+<script>
+// Alamat tetap: membaca alamat server aktif terbaru (server.json, langsung dari API GitHub tanpa cache) lalu meneruskan.
+(async () => {
+  const s = document.getElementById('s');
+  let url = null;
+  try {
+    const r = await fetch('https://api.github.com/repos/Aziz-Anwar17/lolon/contents/server.json?t=' + Date.now(), { headers: { Accept: 'application/vnd.github.raw+json' }, cache: 'no-store' });
+    url = (await r.json()).url;
+  } catch (e) {}
+  if (!url) { try { url = (await (await fetch('server.json?t=' + Date.now(), { cache: 'no-store' })).json()).url; } catch (e) {} }
+  if (url && /^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/.test(url)) { s.textContent = 'Mengalihkan…'; location.replace(url + '/' + location.hash); }
+  else s.innerHTML = 'Server belum tersedia. Coba lagi beberapa saat.';
+})();
+</script></body></html>
