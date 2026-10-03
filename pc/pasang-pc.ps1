@@ -50,7 +50,7 @@ if (-not (Test-Path 'C:\Windows\System32\OpenSSH\ssh.exe')) {
 
 # ---------- 4. Kunci & skrip dari Mac ----------
 Step '4/8 Kunci & skrip'
-foreach ($f in 'penunjuk', 'aplikasi', 'telegram.env') { try { Get "$Sec/kunci/$f?kode=$Kode" "$Root\kunci\$f" } catch { Fail "Kode pemasangan salah/kedaluwarsa atau Mac tidak menyala ($f)." } }
+foreach ($f in 'penunjuk', 'aplikasi', 'telegram.env') { try { Get "$Sec/kunci/${f}?kode=$Kode" "$Root\kunci\$f" } catch { Fail "Kode pemasangan salah/kedaluwarsa atau Mac tidak menyala ($f)." } }
 foreach ($f in 'tunnel.ps1', 'terbitkan-alamat.ps1', 'perbarui.ps1') { Get "$Src/$f" "$Root\$f" }
 icacls "$Root\kunci" /inheritance:r /grant:r 'SYSTEM:(OI)(CI)F' 'Administrators:(OI)(CI)F' /T | Out-Null
 
