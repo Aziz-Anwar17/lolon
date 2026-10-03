@@ -15,7 +15,7 @@ p{color:#8b9ab2}a{color:#34d399}</style></head>
     url = (await r.json()).url;
   } catch (e) {}
   if (!url) { try { url = (await (await fetch('server.json?t=' + Date.now(), { cache: 'no-store' })).json()).url; } catch (e) {} }
-  if (url && /^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/.test(url)) { s.textContent = 'Mengalihkan…'; location.replace(url + '/' + location.hash); }
+  if (url && /^https:\/\/[a-z0-9.-]+$/.test(url)) { s.textContent = 'Mengalihkan…'; location.replace(url + '/' + location.hash); }
   else s.innerHTML = 'Server belum tersedia. Coba lagi beberapa saat.';
 })();
 </script></body></html>
